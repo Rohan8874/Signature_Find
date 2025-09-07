@@ -74,9 +74,9 @@ def bucket_decision(similarity: float) -> str:
       0.80–0.89  -> Check Manually
       0.90–1.00  -> Similar
     """
-    if similarity < 0.80:
+    if similarity < 0.79:
         return "Not Similar"
-    elif similarity < 0.90:
+    elif similarity < 0.89:
         return "Check Manually"
     else:
         return "Similar"
@@ -153,9 +153,7 @@ if image1_file and image2_file:
         if decision != "Check Manually" and st.button("💾 Save Decision"):
             st.success("Saved to in-memory review log.")
 
-        # Create a save row if either button above was clicked
-        # We check Streamlit's last button interaction by peeking at the delta in audit rows count
-        # Instead, we add a small 'Save latest comparison' button that always records current comparison.
+       
         if st.button("📝 Save Latest Comparison Now"):
             row = {
                 "timestamp": datetime.utcnow().isoformat(timespec="seconds") + "Z",
